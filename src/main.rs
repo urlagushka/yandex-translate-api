@@ -1,24 +1,11 @@
-#[macro_use]
-extern crate error_chain;
-extern crate reqwest;
+use crate::request_work::make_request;
 
-use std::io::Read;
+mod request_work;
 
-error_chain! {
-    foreign_links {
-        Io(std::io::Error);
-        HttpRequest(reqwest::Error);
-    }
-}
+fn main() {
+    let source: String = String::from("english");
+    let target: String = String::from("russian");
+    let texts: String = String::from("cat");
 
-fn main() -> Result<()> {
-    let mut res = reqwest::get("http://httpbin.org/get")?;
-    let mut body = String::new();
-    res.read_to_string(&mut body)?;
-
-    //println!("Status: {}", res.status());
-    println!("Headers:\n{:#?}", res.headers());
-    println!("Body:\n{}", body);
-
-    Ok(())
+    println!("{}", make_request(source, target, texts));
 }
