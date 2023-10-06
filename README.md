@@ -1,5 +1,5 @@
 # yandex-translate-api
-Yandex Translate API with rust(based on reqwest crate).
+Yandex Translate API with rust.
 
 ### HTTP-GET
 ```
